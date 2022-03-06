@@ -1,0 +1,44 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+
+    nav
+      div.container
+
+        h3 User Permissions
+        ul.nav.justify-content-end.main-nav
+          if user
+            if user.can('View Dashboard Page')
+              li.nav-item
+                a.nav-link(href='/') Dashboard
+            if user.can('View Accounting Page')
+              li.nav-item
+                a.nav-link(href='/accounting') Accounting
+            if user.can('View Marketing Page')
+              li.nav-item
+                a.nav-link(href='/marketing') Marketing
+            if user.can('View Sales Page')
+              li.nav-item
+                a.nav-link(href='/sales') Sales
+            if user.can('View HR Page')
+              li.nav-item
+                a.nav-link(href='/hr') HR
+
+            li.nav-item
+              a.nav-link(href="role") Profile
+            li.nav-item
+              a.nav-link hello #{user.first_name}
+            li.nav-item
+              a.nav-link(href="logout") Log Out
+
+          else
+            li.nav-item
+              a.nav-link(href="/login") Login
+            li.nav-item
+              a.nav-link(href="/register") Register
+
+    div.container
+      block content
